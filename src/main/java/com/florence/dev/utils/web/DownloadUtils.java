@@ -1,4 +1,4 @@
-package com.florence.dev.utils;
+package com.florence.dev.utils.web;
 
 
 import javax.servlet.http.HttpServletResponse;

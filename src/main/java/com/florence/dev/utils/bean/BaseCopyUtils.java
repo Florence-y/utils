@@ -1,4 +1,4 @@
-package com.florence.dev.utils;
+package com.florence.dev.utils.bean;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;

@@ -1,4 +1,4 @@
-package com.florence.dev.utils;
+package com.florence.dev.utils.json;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

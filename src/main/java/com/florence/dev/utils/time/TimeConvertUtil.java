@@ -1,4 +1,4 @@
-package com.florence.dev.utils;
+package com.florence.dev.utils.time;
 
 import org.apache.commons.lang3.time.DateFormatUtils;
 
