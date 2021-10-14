@@ -47,8 +47,9 @@ public class HeaderUtils {
      */
     public static String getUserAgent(HttpServletRequest request) {
     	String ua = request.getHeader("user-agent");
-        if (StringUtils.isNotBlank(ua))
-        	return ua;
+        if (StringUtils.isNotBlank(ua)) {
+            return ua;
+        }
         return StringUtils.defaultIfEmpty(ua, StringUtils.EMPTY);
     }
     
@@ -59,8 +60,9 @@ public class HeaderUtils {
      */
     public static String getRequesReferUrl(HttpServletRequest request) {
         String referer = request.getHeader("referer");
-        if (StringUtils.isNotBlank(referer))
-        	return referer;
+        if (StringUtils.isNotBlank(referer)) {
+            return referer;
+        }
         return StringUtils.defaultIfEmpty(referer, StringUtils.EMPTY);
     }
     
