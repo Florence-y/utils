@@ -1,4 +1,4 @@
-package com.florence.dev.utils.array;
+package com.florence.dev.utils.colletion;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +8,7 @@ import java.util.List;
 * 列表工具类
 * 
 */
-public class BaseOperUtils {
+public class ListUtils {
 	
 	/**
 	 * 对比两字符串列表内容是否一致
