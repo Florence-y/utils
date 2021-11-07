@@ -70,19 +70,18 @@ public class CompressUtils {
 
 
     /**
-     *
      * @param filePath 源文件目录
      */
     public static String unzip(String filePath) {
         String destFilePath = "";
 
         File zipFile = new File(filePath);
-        if(zipFile.isFile() && zipFile.exists()) {
+        if (zipFile.isFile() && zipFile.exists()) {
             destFilePath = zipFile.getParent() + File.separator
-                    + System.currentTimeMillis();	//以当前时间戳为目录名
+                    + System.currentTimeMillis();    //以当前时间戳为目录名
 
             File dir = new File(destFilePath);
-            if(!dir.exists()) {
+            if (!dir.exists()) {
                 dir.mkdirs();
             }
             ZipInputStream zais;
@@ -100,18 +99,18 @@ public class CompressUtils {
                     try {
                         // 把解压出来的文件写到指定路径
                         File entryFile = new File(entryFilePath);
-                        if(entryFileName.endsWith("/")){
+                        if (entryFileName.endsWith("/")) {
                             entryFile.mkdirs();
-                        }else{
+                        } else {
                             os = new BufferedOutputStream(new FileOutputStream(new File(entryFilePath)));
                             byte[] buffer = new byte[2048];
                             int len = -1;
-                            while((len = zais.read(buffer)) != -1) {
+                            while ((len = zais.read(buffer)) != -1) {
                                 os.write(buffer, 0, len);
                             }
                         }
                     } finally {
-                        if(os != null) {
+                        if (os != null) {
                             os.flush();
                             os.close();
                         }
@@ -126,7 +125,6 @@ public class CompressUtils {
     }
 
     /**
-     *
      * @param filePath 源文件目录
      * @return 返回解压后的文件目录
      */
@@ -134,12 +132,12 @@ public class CompressUtils {
         String destFilePath = "";
 
         File rarFile = new File(filePath);
-        if(rarFile.isFile() && rarFile.exists()) {
+        if (rarFile.isFile() && rarFile.exists()) {
             destFilePath = rarFile.getParent() + File.separator
-                    + System.currentTimeMillis();	//以当前时间戳为目录名
+                    + System.currentTimeMillis();    //以当前时间戳为目录名
 
             File dir = new File(destFilePath);
-            if(!dir.exists()) {
+            if (!dir.exists()) {
                 dir.mkdirs();
             }
 
@@ -147,9 +145,9 @@ public class CompressUtils {
             try {
                 archive = new Archive(rarFile);
                 FileHeader fh = archive.nextFileHeader();
-                while(fh != null) {
+                while (fh != null) {
                     //文件夹
-                    if(fh.isDirectory()) {
+                    if (fh.isDirectory()) {
                         File outDir = new File(destFilePath + File.separator
                                 + fh.getFileNameString());
                         outDir.mkdirs();
@@ -186,9 +184,9 @@ public class CompressUtils {
 
     public static String uncompressFile(String filePath) throws Exception {
 
-        if(filePath.endsWith(FileSuffixesStants.ZIP_SUFFIXES.getSuffixes())) {
+        if (filePath.endsWith(FileSuffixesStants.ZIP_SUFFIXES.getSuffixes())) {
             return unzip(filePath);
-        } else if(filePath.endsWith(FileSuffixesStants.RAR_SUFFIXES.getSuffixes())) {
+        } else if (filePath.endsWith(FileSuffixesStants.RAR_SUFFIXES.getSuffixes())) {
             return unrar(filePath);
         } else {
             throw new Exception("This type of file is not supported!");
@@ -199,6 +197,7 @@ public class CompressUtils {
     /**
      * Rename the file name as format of fileName+yyyyMMddHHmmss
      * For example: icon.jpg would rename as randomStr_20160527172531.jpg
+     *
      * @param fileName
      * @return newFileName
      */
@@ -215,7 +214,7 @@ public class CompressUtils {
         sb.append(randomStr)
                 .append(formattedTime)
                 .append(".")
-                .append(fileNameParts[fileNamePartsLength-1]);
+                .append(fileNameParts[fileNamePartsLength - 1]);
 
         return sb.toString();
     }

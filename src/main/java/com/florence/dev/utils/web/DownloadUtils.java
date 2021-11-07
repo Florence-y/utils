@@ -14,13 +14,13 @@ public class DownloadUtils {
 
         response.setContentType("application/dowload");
         response.setHeader("Content-disposition", "attachment;filename=\""
-                + new String((java.net.URLEncoder.encode(filename,  "UTF-8")).getBytes("UTF-8"), "GB2312") + "\"");
+                + new String((java.net.URLEncoder.encode(filename, "UTF-8")).getBytes("UTF-8"), "GB2312") + "\"");
 
         DataInputStream in = null;
         OutputStream out = null;
 
         //输入流：本地文件路径
-                in = new DataInputStream(
+        in = new DataInputStream(
                 new FileInputStream(new File(path)));
         //输出流
         out = response.getOutputStream();
@@ -31,11 +31,12 @@ public class DownloadUtils {
             out.write(bufferOut, 0, bytes);
         }
     }
+
     public static void exportToDownload(HttpServletResponse response, File file) throws IOException {
 
         response.setContentType("application/dowload");
         response.setHeader("Content-disposition", "attachment;filename=\""
-                + new String((java.net.URLEncoder.encode(file.getName(),  "UTF-8")).getBytes("UTF-8"), "GB2312") + "\"");
+                + new String((java.net.URLEncoder.encode(file.getName(), "UTF-8")).getBytes("UTF-8"), "GB2312") + "\"");
 
         DataInputStream in = null;
         OutputStream out = null;

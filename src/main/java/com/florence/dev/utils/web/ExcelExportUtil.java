@@ -17,10 +17,11 @@ public class ExcelExportUtil {
 
     /**
      * 导出sheet到http
+     *
      * @param response
-     * @param filename  文件名
-     * @param sheet  sheet名
-     * @param titles  列名
+     * @param filename 文件名
+     * @param sheet    sheet名
+     * @param titles   列名
      * @param dataList 数据
      * @throws IOException
      */
@@ -31,12 +32,13 @@ public class ExcelExportUtil {
         OutputStream os = response.getOutputStream();
         response.setContentType("application/dowload");
         response.setHeader("Content-disposition", "attachment;filename=\""
-                + new String((java.net.URLEncoder.encode(filename,  "UTF-8")).getBytes("UTF-8"), "GB2312") + "\"");
+                + new String((java.net.URLEncoder.encode(filename, "UTF-8")).getBytes("UTF-8"), "GB2312") + "\"");
         export(os, sheet, titles, dataList);
     }
 
     /**
      * 导出
+     *
      * @param os
      * @param sheet
      * @param titles
@@ -57,24 +59,22 @@ public class ExcelExportUtil {
         // 设置居中
         try {
             wc.setAlignment(Alignment.CENTRE);
-            for(int i = 0;i < dataList.size();i++)
-            {
-                if(i % maxRowCount == 0)
-                {
-    //                currentSheetId++;
+            for (int i = 0; i < dataList.size(); i++) {
+                if (i % maxRowCount == 0) {
+                    //                currentSheetId++;
                     currentSheet = workBookDownload.createSheet(sheet, currentSheetId++);
                     if (titles != null) {
-                        for(int titleIndex=0; titleIndex<titles.size(); titleIndex++) {
-                            currentSheet.addCell(new Label(titleIndex,0,titles.get(titleIndex),new WritableCellFormat(wc)));
+                        for (int titleIndex = 0; titleIndex < titles.size(); titleIndex++) {
+                            currentSheet.addCell(new Label(titleIndex, 0, titles.get(titleIndex), new WritableCellFormat(wc)));
                             currentSheet.setColumnView(i, COLUMN_WIDTH);
                         }
                     }
                 }
-                currentSheet = workBookDownload.getSheet(currentSheetId-1);
+                currentSheet = workBookDownload.getSheet(currentSheetId - 1);
                 List<String> data = dataList.get(i);
-                for(int j=0; j<data.size(); j++) {
+                for (int j = 0; j < data.size(); j++) {
                     if (data.get(j) != null) {
-                        currentSheet.addCell(new Label(j, i%maxRowCount+1 , data.get(j), new WritableCellFormat(wc)));
+                        currentSheet.addCell(new Label(j, i % maxRowCount + 1, data.get(j), new WritableCellFormat(wc)));
                     }
                 }
 
@@ -83,18 +83,18 @@ public class ExcelExportUtil {
             workBookDownload.close();
             os.close();
         } catch (WriteException e) {
-            log.error("WebExcel导出失败",e);
+            log.error("WebExcel导出失败", e);
         }
     }
 
 
-    public static void export(HttpServletResponse response,String filename,String fullFilePath)
-        throws IOException {
+    public static void export(HttpServletResponse response, String filename, String fullFilePath)
+            throws IOException {
 
         OutputStream os = response.getOutputStream();
         response.setContentType("application/dowload");
         response.setHeader("Content-disposition", "attachment;filename=\""
-            + new String((java.net.URLEncoder.encode(filename,  "UTF-8")).getBytes("UTF-8"), "GB2312") + "\"");
+                + new String((java.net.URLEncoder.encode(filename, "UTF-8")).getBytes("UTF-8"), "GB2312") + "\"");
         InputStream is = new FileInputStream(new File(fullFilePath));
         IOUtils.copy(is, os);
         is.close();

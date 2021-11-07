@@ -6,6 +6,7 @@ package com.florence.dev.utils.web;
 public class PageUtils {
 
     private static final int PAGE_SIZE = 10;
+
     private static int getPage(Integer page) {
         if (page == null) {
             page = 1;
@@ -31,8 +32,9 @@ public class PageUtils {
         page = getPage(page);
         return (page - 1) * pageSize;
     }
-    public static int getPageSize(Integer pageSize, int defaultSize){
-        if(pageSize == null || pageSize < 0) {
+
+    public static int getPageSize(Integer pageSize, int defaultSize) {
+        if (pageSize == null || pageSize < 0) {
             return defaultSize;
         }
         return pageSize;

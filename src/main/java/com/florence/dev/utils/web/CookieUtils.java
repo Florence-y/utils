@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 public class CookieUtils {
 
 
-
     public static String getCookieValue(HttpServletRequest request, String key) {
         String value = null;
         Cookie[] cookies = request.getCookies();
@@ -44,7 +43,7 @@ public class CookieUtils {
         return exists;
     }
 
-    public static void addCookieValue(HttpServletResponse response, String key, String value,String domain) {
+    public static void addCookieValue(HttpServletResponse response, String key, String value, String domain) {
         Cookie cookie = new Cookie(key, value);
         cookie.setMaxAge(-1);
         cookie.setDomain(domain);
@@ -53,7 +52,7 @@ public class CookieUtils {
         response.addCookie(cookie);
     }
 
-    public static void addCookieValue(HttpServletResponse response, String key, String value, int seconds,String domain) {
+    public static void addCookieValue(HttpServletResponse response, String key, String value, int seconds, String domain) {
         Cookie cookie = new Cookie(key, value);
         cookie.setMaxAge(seconds);
         cookie.setDomain(domain);
@@ -62,7 +61,7 @@ public class CookieUtils {
         response.addCookie(cookie);
     }
 
-    public static void deleteCookieValue(HttpServletRequest request, HttpServletResponse response, String key,String domain) {
+    public static void deleteCookieValue(HttpServletRequest request, HttpServletResponse response, String key, String domain) {
         boolean exists = existsCookie(request, key);
         if (exists) {
             Cookie cookie = new Cookie(key, null);

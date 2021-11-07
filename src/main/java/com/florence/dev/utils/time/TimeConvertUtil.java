@@ -38,23 +38,23 @@ public class TimeConvertUtil {
     }
 
 
-    public static  Timestamp  getAfterNDayTimestamp(int N, Timestamp timeStamp){
+    public static Timestamp getAfterNDayTimestamp(int N, Timestamp timeStamp) {
         LocalDateTime localDateTimeAfterN = timestampToLocalDatetime(timeStamp).plusDays(N);
         return localDatetimeToTimestamp(localDateTimeAfterN);
     }
 
-    public static LocalDateTime timestampToLocalDatetime(Timestamp timestamp){
+    public static LocalDateTime timestampToLocalDatetime(Timestamp timestamp) {
         Instant instant = Instant.ofEpochMilli(timestamp.getTime());
         return LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
     }
 
 
-    public static Timestamp getAfterNMinuteTimestamp(int N,Timestamp timestamp){
+    public static Timestamp getAfterNMinuteTimestamp(int N, Timestamp timestamp) {
         LocalDateTime localDateTimeAfterN = timestampToLocalDatetime(timestamp).plusMinutes(N);
         return localDatetimeToTimestamp(localDateTimeAfterN);
     }
 
-    public static Timestamp localDatetimeToTimestamp(LocalDateTime ldt){
+    public static Timestamp localDatetimeToTimestamp(LocalDateTime ldt) {
         return new Timestamp(ldt.toInstant(ZoneOffset.of("+8")).toEpochMilli());
     }
 
@@ -287,7 +287,6 @@ public class TimeConvertUtil {
         calendar.add(Calendar.MINUTE, minute);
         return calendar.getTimeInMillis();
     }
-
 
 
 }
